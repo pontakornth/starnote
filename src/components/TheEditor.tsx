@@ -7,8 +7,8 @@ const TheEditor = () => (
 			<div className="tab">Edit</div>
 			<div className="tab">Preview</div>
 		</div>
-		<div className="content">
-
+		<div className={styles.editorContent}>
+			rrr
 		</div>
 	</div>
 )

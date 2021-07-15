@@ -3,3 +3,7 @@
 	grid-template-columns: repeat(4, 1fr);
 	height: 100%;
 }
+
+.App > * {
+	height: 100%;
+}

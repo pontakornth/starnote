@@ -1,4 +1,13 @@
 .theEditor {
 	grid-column: 2 / -1;
 	background: rgb(245, 245, 245);
+	display: flex;
+	flex-flow: column nowrap;
+	height: 100%;
+	grid-row: 1 / -1;
+}
+
+.editorContent {
+	background: rgb(252, 252, 252);
+	flex: 1;
 }
