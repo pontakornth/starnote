@@ -1,0 +1,14 @@
+.theSidebar {
+	padding: 1rem;
+}
+
+.noteList {
+	list-style: none;
+	padding: 0;
+}
+
+.noteList li {
+	border: 1px solid #000;
+	padding: .5rem;
+	margin-bottom: .5rem;
+}
