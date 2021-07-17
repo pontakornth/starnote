@@ -3,11 +3,12 @@ import Note from '../types/Note'
 import { nanoid } from 'nanoid'
 
 type NoteState = {
-	currentNoteIndex: 0,
+	currentNoteIndex: number,
 	notes: Note[],
 	addNote: (title: string) => void,
 	deleteNote: (id: string) => void,
 	editNote: (note: Note) => void,
+	setNoteIndex: (index: number) => void,
 }
 
 const useNotes = create<NoteState>((set) => ({
@@ -19,7 +20,8 @@ const useNotes = create<NoteState>((set) => ({
 	}] as Note[],
 	addNote: (title: string) => set(state => ({notes: [...state.notes, {id: nanoid(), title, content: ""}]})),
 	deleteNote: (id: string) => set(state => ({notes: state.notes.filter(x => x.id !== id)})),
-	editNote: (note: Note) => set(state => ({notes: state.notes.map(x => x.id === note.id ? note : x)}))
+	editNote: (note: Note) => set(state => ({notes: state.notes.map(x => x.id === note.id ? note : x)})),
+	setNoteIndex: (index: number) => set(state => ({currentNoteIndex: index}))
 }))
 
 export default useNotes
