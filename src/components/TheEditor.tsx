@@ -6,7 +6,6 @@ const TheEditor = () => {
 	const noteState = useNotes();
 	function handleChangeTitle(e: React.ChangeEvent<HTMLHeadingElement>) {
 		const currentNote = noteState.notes[noteState.currentNoteIndex]
-		console.log("edi")
 		noteState.editNote({...currentNote, title: e.target.innerHTML})
 	}
 
