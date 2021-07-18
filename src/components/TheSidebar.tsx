@@ -21,9 +21,9 @@ const TheSidebar = () => {
 	}
 	return (
 		<div className={styles.theSidebar}>
-			<h1>Starnote</h1>
-			<input type="next" name="note-title" value={title} onChange={handleChangeTitle} />
-			<button onClick={addNote}>Add</button>
+			<h1 className={styles.title}>Starnote</h1>
+			<input className={styles.titleInput} type="next" name="note-title" value={title} onChange={handleChangeTitle} />
+			<button className={styles.addButton} onClick={addNote}>Add</button>
 			<ul className={styles.noteList}>
 				{notesState.notes.map((note, index) => (
 					<li key={note.id}>
