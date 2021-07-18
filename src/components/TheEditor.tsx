@@ -4,6 +4,7 @@ import styles from './TheEditor.module.css'
 
 const TheEditor = () => {
 	const noteState = useNotes();
+	const isEditing = useNotes(state => state.isEditing);
 	function handleChangeTitle(e: React.ChangeEvent<HTMLHeadingElement>) {
 		const currentNote = noteState.notes[noteState.currentNoteIndex]
 		noteState.editNote({...currentNote, title: e.target.innerHTML})
@@ -15,9 +16,9 @@ const TheEditor = () => {
 	}
 	return (
 	<div className={styles.theEditor}>
-		<div className="tabs">
-			<div className="tab">Edit</div>
-			<div className="tab">Preview</div>
+		<div className={styles.tabs}>
+			<div className={`${styles.tab} ${isEditing && styles.isActive}`}>Edit</div>
+			<div className={`${styles.tab} ${!isEditing && styles.isActive}`}>Preview</div>
 		</div>
 		<div className={styles.editorContent}>
 			<h2 

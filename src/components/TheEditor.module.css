@@ -10,4 +10,26 @@
 .editorContent {
 	background: rgb(252, 252, 252);
 	flex: 1;
+	padding: 1rem;
+}
+
+.tabs {
+	display: flex;
+	background: #4860a8;
+}
+
+.tab {
+	padding: .5rem;
+	background: #fff;
+	cursor: pointer;
+}
+
+.tab:not(.isActive):hover {
+	background:	#304890;
+	color: #fff;
+}
+
+.tab.isActive {
+	background: #000078;
+	color: #fff;
 }
