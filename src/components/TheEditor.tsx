@@ -5,14 +5,14 @@ import styles from './TheEditor.module.css'
 const TheEditor = () => {
 	const noteState = useNotes();
 	const isEditing = useNotes(state => state.isEditing);
-	function handleChangeTitle(e: React.ChangeEvent<HTMLHeadingElement>) {
+	function handleChangeTitle(e: React.ChangeEvent<HTMLInputElement>) {
 		const currentNote = noteState.notes[noteState.currentNoteIndex]
-		noteState.editNote({...currentNote, title: e.target.innerHTML})
+		noteState.editNote({...currentNote, title: e.target.value})
 	}
 
-	function handleChangeContent(e: React.ChangeEvent<HTMLDivElement>){
+	function handleChangeContent(e: React.ChangeEvent<HTMLTextAreaElement>){
 		const currentNote = noteState.notes[noteState.currentNoteIndex]
-		noteState.editNote({...currentNote, content: e.target.innerHTML})
+		noteState.editNote({...currentNote, content: e.target.value})
 	}
 	return (
 	<div className={styles.theEditor}>
@@ -21,18 +21,19 @@ const TheEditor = () => {
 			<div className={`${styles.tab} ${!isEditing && styles.isActive}`}>Preview</div>
 		</div>
 		<div className={styles.editorContent}>
-			<h2 
-				dangerouslySetInnerHTML={{__html: noteState.notes[noteState.currentNoteIndex].title}}
-				onBlur={handleChangeTitle}
-				contentEditable={true}
+			<input 
+				type="text"
+				onChange={handleChangeTitle}
+				value={noteState.notes[noteState.currentNoteIndex].title}
+				className={styles.titleInput}
 			>
-			</h2>
-			<div className="content"
-			    dangerouslySetInnerHTML={{__html: noteState.notes[noteState.currentNoteIndex].content}}
-				onBlur={handleChangeContent}
-				contentEditable={true}
+			</input>
+			<textarea
+			    value={noteState.notes[noteState.currentNoteIndex].content}
+				onChange={handleChangeContent}
+				className={styles.contentInput}
 			>
-			</div>
+			</textarea>
 		</div>
 	</div>
 )}
