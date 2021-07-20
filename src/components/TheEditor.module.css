@@ -42,7 +42,18 @@
 	font-size: 2rem;
 	margin-bottom: 1rem;
 	font-weight: bold;
+	border: none;
 }
+
+.titleInput::placeholder {
+	color: #ddd;
+
+}
+
+.titleInput, .contentInput {
+	border: 1px solid #dedede;
+}
+
 
 .contentInput {
 	display: block;
@@ -50,4 +61,8 @@
 	width: 100%;
 	font-size: 1rem;
 	flex: 1;
+}
+
+.contentInput::placeholder {
+	color: #ddd;
 }

@@ -30,12 +30,14 @@ const TheEditor = () => {
 				onChange={handleChangeTitle}
 				value={noteState.notes[noteState.currentNoteIndex].title}
 				className={styles.titleInput}
+				placeholder="Title here."
 			>
 			</input>
 			<textarea
 			    value={noteState.notes[noteState.currentNoteIndex].content}
 				onChange={handleChangeContent}
 				className={styles.contentInput}
+				placeholder="Content here"
 			>
 			</textarea>
 			</>

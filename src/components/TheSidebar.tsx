@@ -27,7 +27,7 @@ const TheSidebar = () => {
 			<ul className={styles.noteList}>
 				{notesState.notes.map((note, index) => (
 					<li key={note.id}>
-						<a href="#" onClick={handleClick(index)}>{note.title}</a>
+						<a href="#" onClick={handleClick(index)}>{note.title || '[Untitled]'}</a>
 					</li>
 				))}
 			</ul>
