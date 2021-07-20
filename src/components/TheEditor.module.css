@@ -25,14 +25,11 @@
 
 .tab {
 	padding: .5rem;
-	background: #fff;
 	cursor: pointer;
-}
-
-.tab:not(.isActive):hover {
 	background:	#304890;
 	color: #fff;
 }
+
 
 .tab.isActive {
 	background: #000078;
