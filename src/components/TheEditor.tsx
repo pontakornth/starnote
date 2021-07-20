@@ -21,21 +21,20 @@ const components: Partial<NormalComponents & SpecialComponents> = {
 
 const TheEditor = () => {
 	const noteState = useNotes();
+	const currentNote = useNotes(state => state.notes[state.currentNoteIndex])
 	const isEditing = useNotes(state => state.isEditing);
 	function handleChangeTitle(e: React.ChangeEvent<HTMLInputElement>) {
-		const currentNote = noteState.notes[noteState.currentNoteIndex]
 		noteState.editNote({...currentNote, title: e.target.value})
 	}
 
 	function handleChangeContent(e: React.ChangeEvent<HTMLTextAreaElement>){
-		const currentNote = noteState.notes[noteState.currentNoteIndex]
 		noteState.editNote({...currentNote, content: e.target.value})
 	}
 
 	return (
 	<div className={styles.theEditor}>
 		<div className={styles.tabs}>
-			<div onClick={noteState.toggleMode} className={styles.tab}>{isEditing ? 'Edit' : 'Preview'}</div>
+			<div onClick={noteState.toggleMode} className={styles.tab}>{isEditing ? 'Edit Mode' : 'Preview Mode'}</div>
 		</div>
 		<div className={`${styles.editorContent} ${isEditing ? styles.isEditing : ''}`}>
 			{isEditing ? (
@@ -43,13 +42,13 @@ const TheEditor = () => {
 			<input 
 				type="text"
 				onChange={handleChangeTitle}
-				value={noteState.notes[noteState.currentNoteIndex].title}
+				value={currentNote.title}
 				className={styles.titleInput}
 				placeholder="Title here."
 			>
 			</input>
 			<textarea
-			    value={noteState.notes[noteState.currentNoteIndex].content}
+			    value={currentNote.content}
 				onChange={handleChangeContent}
 				className={styles.contentInput}
 				placeholder="Content here"
@@ -58,9 +57,9 @@ const TheEditor = () => {
 			</>
 			) : (
 				<>
-				<h1>{noteState.notes[noteState.currentNoteIndex].title}</h1>
+				<h1>{currentNote.title}</h1>
 				<ReactMarkdown components={components}>
-					{noteState.notes[noteState.currentNoteIndex].content}
+					{currentNote.content}
 				</ReactMarkdown>
 				</>
 			)}
