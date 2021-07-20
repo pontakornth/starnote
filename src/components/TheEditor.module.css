@@ -13,6 +13,11 @@
 	padding: 1rem;
 }
 
+.isEditing {
+	display: flex;
+	flex-flow: column nowrap;
+}
+
 .tabs {
 	display: flex;
 	background: #4860a8;
@@ -37,7 +42,7 @@
 .titleInput {
 	padding: .5rem;
 	display: block;
-	font-size: 2.75rem;
+	font-size: 2rem;
 	margin-bottom: 1rem;
 	font-weight: bold;
 }
@@ -46,4 +51,6 @@
 	display: block;
 	padding: .5rem;
 	width: 100%;
+	font-size: 1rem;
+	flex: 1;
 }

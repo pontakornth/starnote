@@ -1,6 +1,8 @@
 import React from 'react'
 import useNotes from '../stores/note'
 import styles from './TheEditor.module.css'
+import ReactMarkdown from 'react-markdown'
+import { note } from 'vfile-message'
 
 const TheEditor = () => {
 	const noteState = useNotes();
@@ -14,13 +16,15 @@ const TheEditor = () => {
 		const currentNote = noteState.notes[noteState.currentNoteIndex]
 		noteState.editNote({...currentNote, content: e.target.value})
 	}
+
 	return (
 	<div className={styles.theEditor}>
 		<div className={styles.tabs}>
-			<div className={`${styles.tab} ${isEditing && styles.isActive}`}>Edit</div>
-			<div className={`${styles.tab} ${!isEditing && styles.isActive}`}>Preview</div>
+			<div onClick={noteState.toggleMode} className={styles.tab}>{isEditing ? 'Edit' : 'Preview'}</div>
 		</div>
-		<div className={styles.editorContent}>
+		<div className={`${styles.editorContent} ${isEditing ? styles.isEditing : ''}`}>
+			{isEditing ? (
+				<>
 			<input 
 				type="text"
 				onChange={handleChangeTitle}
@@ -34,6 +38,15 @@ const TheEditor = () => {
 				className={styles.contentInput}
 			>
 			</textarea>
+			</>
+			) : (
+				<>
+				<h1>{noteState.notes[noteState.currentNoteIndex].title}</h1>
+				<ReactMarkdown>
+					{noteState.notes[noteState.currentNoteIndex].content}
+				</ReactMarkdown>
+				</>
+			)}
 		</div>
 	</div>
 )}

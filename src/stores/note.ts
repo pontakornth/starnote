@@ -10,6 +10,7 @@ type NoteState = {
 	deleteNote: (id: string) => void,
 	editNote: (note: Note) => void,
 	setNoteIndex: (index: number) => void,
+	toggleMode: () => void,
 }
 
 const useNotes = create<NoteState>((set) => ({
@@ -24,7 +25,8 @@ const useNotes = create<NoteState>((set) => ({
 	deleteNote: (id: string) => set(state => ({notes: state.notes.filter(x => x.id !== id)})),
 	editNote: (note: Note) => set(state => ({notes: state.notes.map(x => x.id === note.id ? note : x)})),
 	setNoteIndex: (index: number) => set(state => ({currentNoteIndex: index})),
-	toggleMode: () => set(state => ({isEditing: !(state.isEditing)}))
+	toggleMode: () => set(state => ({isEditing: !(state.isEditing)})),
+
 }))
 
 export default useNotes
