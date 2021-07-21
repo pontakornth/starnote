@@ -7,16 +7,21 @@
 	padding: 0;
 }
 
-.noteList li a {
+.noteList li  {
 	background: rgb(250, 250, 250);
-	display: block;
+	display: flex;
+	justify-content: space-between;
 	padding: .5rem;
 	text-decoration: none;
 }
 
-.noteList li a:hover {
+.noteList li:hover {
 	color: #fff;
 	background: #000078;
+}
+
+.noteList li:hover a {
+	color: #fff;
 }
 
 .title {

@@ -19,6 +19,12 @@ const TheSidebar = () => {
 			notesState.setNoteIndex(index)
 		}
 	}
+
+	function handleDelete(id: string) {
+		return function() {
+			notesState.deleteNote(id)
+		}
+	}
 	return (
 		<div className={styles.theSidebar}>
 			<h1 className={styles.title}>Starnote</h1>
@@ -28,6 +34,7 @@ const TheSidebar = () => {
 				{notesState.notes.map((note, index) => (
 					<li key={note.id}>
 						<a href="#" onClick={handleClick(index)}>{note.title || '[Untitled]'}</a>
+						<button onClick={handleDelete(note.id)}>Delete Note</button>
 					</li>
 				))}
 			</ul>
