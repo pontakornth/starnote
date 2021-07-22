@@ -22,6 +22,7 @@ const TheSidebar = () => {
 
 	function handleDelete(id: string, index: number) {
 		return function() {
+			// TODO: Allow deleting to zero note.
 			if (notesState.notes.length > 1) {
 				if (index === notesState.currentNoteIndex) {
 					if (index == 0) {
