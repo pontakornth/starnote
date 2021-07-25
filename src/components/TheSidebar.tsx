@@ -26,7 +26,7 @@ const TheSidebar = () => {
 			if (notesState.notes.length > 1) {
 				if (index === notesState.currentNoteIndex) {
 					if (index == 0) {
-						notesState.setNoteIndex(1)
+						notesState.setNoteIndex(0)
 					} else {
 						notesState.setNoteIndex(index - 1)
 					}
