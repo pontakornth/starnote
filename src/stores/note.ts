@@ -35,7 +35,7 @@ const useNotes = create<NoteState>((set, get) => ({
 		localStorge.setItem('state', JSON.stringify(savedState))
 	},
 	loadFromLocalStorage: () => set(_state => {
-		const loadedState: NoteState = JSON.parse(localStorage.getItem('state') || '')
+		const loadedState: NoteState = JSON.parse(localStorage.getItem('state') || '{}')
 		return loadedState
 	}),
 
