@@ -39,16 +39,26 @@ const TheSidebar = () => {
 		<div className={styles.theSidebar}>
 			<h1 className={styles.title}>Starnote</h1>
 			<input className={styles.titleInput} type="next" name="note-title" value={title} onChange={handleChangeTitle} />
-			<button className={styles.addButton} onClick={addNote}>Add</button>
+			<button className={[styles.button, styles.addButton].join(' ')} onClick={addNote}>Add</button>
 			<ul className={styles.noteList}>
 				{notesState.notes.map((note, index) => (
 					<li key={note.id}>
 						<a href="#" onClick={handleClick(index)}>{note.title || '[Untitled]'}</a>
-						<button onClick={handleDelete(note.id, index)}>Delete Note</button>
+						<button 
+							className ={[styles.button, styles.deleteButton].join(' ')}
+							onClick={handleDelete(note.id, index)}
+						>
+							Delete Note
+						</button>
 					</li>
 				))}
 			</ul>
-			<button onClick={notesState.saveToLocalStorage}>Save</button>
+			<button 
+				onClick={notesState.saveToLocalStorage}
+				className={[styles.button, styles.saveButton].join(' ')}
+			>
+				Save
+			</button>
 		</div>
 	)
 }
