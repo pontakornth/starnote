@@ -7,7 +7,7 @@ A simple note taking app for minimalist.
 - [x] Basic Note Taking
 - [x] Markdown Support
 - [x] CRUD Operations
-- [ ] Saving Notes
+- [x] Saving Notes
 - [ ] Optional (Implement if can dedicate) saving notes online
 
 
