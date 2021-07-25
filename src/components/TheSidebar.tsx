@@ -48,6 +48,7 @@ const TheSidebar = () => {
 					</li>
 				))}
 			</ul>
+			<button onClick={notesState.saveToLocalStorage}>Save</button>
 		</div>
 	)
 }

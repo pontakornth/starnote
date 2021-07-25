@@ -11,9 +11,11 @@ type NoteState = {
 	editNote: (note: Note) => void,
 	setNoteIndex: (index: number) => void,
 	toggleMode: () => void,
+	saveToLocalStorage: () => void,
+	loadFromLocalStorage: () => void,
 }
 
-const useNotes = create<NoteState>((set) => ({
+const useNotes = create<NoteState>((set, get) => ({
 	currentNoteIndex: 0,
 	notes: [{
 		title: "Hello, Note",
@@ -26,6 +28,17 @@ const useNotes = create<NoteState>((set) => ({
 	editNote: (note: Note) => set(state => ({notes: state.notes.map(x => x.id === note.id ? note : x)})),
 	setNoteIndex: (index: number) => set(state => ({currentNoteIndex: index})),
 	toggleMode: () => set(state => ({isEditing: !(state.isEditing)})),
+	saveToLocalStorage: () => {
+		const state = get()
+		const savedState = {currentNoteIndex: state.currentNoteIndex, notes: state.notes}
+		const localStorge = window.localStorage
+		localStorge.setItem('state', JSON.stringify(savedState))
+		console.log(localStorge.getItem('state'))
+	},
+	loadFromLocalStorage: () => set(_state => {
+		const loadedState: NoteState = JSON.parse(localStorage.getItem('state') || '')
+		return loadedState
+	}),
 
 }))
 
