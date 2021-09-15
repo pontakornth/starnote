@@ -3,64 +3,64 @@ import styles from './TheSidebar.module.css'
 import useNotes from '../stores/note'
 
 const TheSidebar = () => {
-	const notesState = useNotes()
-	const [title, setTitle] = useState("")
-	function handleChangeTitle(e: ChangeEvent<HTMLInputElement>) {
-		setTitle(e.target.value)
-	}
-	function addNote() {
-		if (title.length > 0) {
-			notesState.addNote(title)
-		}
-	}
+  const notesState = useNotes()
+  const [title, setTitle] = useState('')
+  function handleChangeTitle (e: ChangeEvent<HTMLInputElement>) {
+    setTitle(e.target.value)
+  }
+  function addNote () {
+    if (title.length > 0) {
+      notesState.addNote(title)
+    }
+  }
 
-	function handleClick(index: number) {
-		return function() {
-			notesState.setNoteIndex(index)
-		}
-	}
+  function handleClick (index: number) {
+    return function () {
+      notesState.setNoteIndex(index)
+    }
+  }
 
-	function handleDelete(id: string, index: number) {
-		return function() {
-			// TODO: Allow deleting to zero note.
-			if (notesState.notes.length > 1) {
-				if (index === notesState.currentNoteIndex) {
-					if (index == 0) {
-						notesState.setNoteIndex(0)
-					} else {
-						notesState.setNoteIndex(index - 1)
-					}
-				}
-				notesState.deleteNote(id)
-			}
-		}
-	}
-	return (
-		<div className={styles.theSidebar}>
-			<h1 className={styles.title}>Starnote</h1>
-			<input className={styles.titleInput} type="next" name="note-title" value={title} onChange={handleChangeTitle} />
-			<button className={[styles.button, styles.addButton].join(' ')} onClick={addNote}>Add</button>
-			<ul className={styles.noteList}>
-				{notesState.notes.map((note, index) => (
-					<li key={note.id}>
-						<a href="#" onClick={handleClick(index)}>{note.title || '[Untitled]'}</a>
-						<button 
-							className ={[styles.button, styles.deleteButton].join(' ')}
-							onClick={handleDelete(note.id, index)}
-						>
-							Delete Note
-						</button>
-					</li>
-				))}
-			</ul>
-			<button 
-				onClick={notesState.saveToLocalStorage}
-				className={[styles.button, styles.saveButton].join(' ')}
-			>
-				Save
-			</button>
-		</div>
-	)
+  function handleDelete (id: string, index: number) {
+    return function () {
+      // TODO: Allow deleting to zero note.
+      if (notesState.notes.length > 1) {
+        if (index === notesState.currentNoteIndex) {
+          if (index === 0) {
+            notesState.setNoteIndex(0)
+          } else {
+            notesState.setNoteIndex(index - 1)
+          }
+        }
+        notesState.deleteNote(id)
+      }
+    }
+  }
+  return (
+        <div className={styles.theSidebar}>
+            <h1 className={styles.title}>Starnote</h1>
+            <input className={styles.titleInput} type="next" name="note-title" value={title} onChange={handleChangeTitle} />
+            <button className={[styles.button, styles.addButton].join(' ')} onClick={addNote}>Add</button>
+            <ul className={styles.noteList}>
+                {notesState.notes.map((note, index) => (
+                    <li key={note.id}>
+                        <a href="#" onClick={handleClick(index)}>{note.title || '[Untitled]'}</a>
+                        <button
+                            className ={[styles.button, styles.deleteButton].join(' ')}
+                            onClick={handleDelete(note.id, index)}
+                        >
+                            Delete Note
+                        </button>
+                    </li>
+                ))}
+            </ul>
+            <button
+                onClick={notesState.saveToLocalStorage}
+                className={[styles.button, styles.saveButton].join(' ')}
+            >
+                Save
+            </button>
+        </div>
+  )
 }
 
 export default TheSidebar

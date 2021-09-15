@@ -4,8 +4,8 @@ import TheSidebar from './components/TheSidebar'
 import styles from './App.module.css'
 import useNotes from './stores/note'
 
-function App() {
-  const loadFromLocalStorage = useNotes(state => state.loadFromLocalStorage)
+function App () {
+  const loadFromLocalStorage = useNotes((state) => state.loadFromLocalStorage)
   useEffect(() => {
     loadFromLocalStorage()
   }, [])
